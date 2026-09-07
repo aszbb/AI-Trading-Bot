@@ -5,24 +5,24 @@ import yfinance as yf
 
 # Page configuration
 st.set_page_config(
-    page_title="ASZ Forex Terminal",
-    page_icon="👑",
+    page_title="ASZ Pro Forex Terminal",
+    page_icon="💹",
     layout="centered",
 )
 
-# Modern, Ultra-Attractive & Glowing CSS Styling
+# Advanced Cyberpunk / Deep Emerald Neon Styling (Different from Crypto Theme)
 st.markdown(
     """
     <style>
-    /* Background Gradient */
+    /* Background Deep Emerald Neon Gradient */
     .stApp {
-        background: radial-gradient(circle at center, #0f0c1b 0%, #1b1b2f 100%);
+        background: radial-gradient(circle at center, #061a14 0%, #020d09 100%);
         color: #ffffff;
     }
     
-    /* Custom Header Styling */
+    /* Custom Header Styling - Gold & Emerald Neon */
     .header-title {
-        background: linear-gradient(90deg, #00cec9 0%, #6c5ce7 50%, #ff7675 100%);
+        background: linear-gradient(90deg, #00ffcc 0%, #00b894 50%, #f1c40f 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 38px;
@@ -32,7 +32,7 @@ st.markdown(
     }
     
     .sub-header {
-        color: #a29bfe;
+        color: #55efc4;
         text-align: center;
         font-size: 16px;
         margin-bottom: 25px;
@@ -41,27 +41,27 @@ st.markdown(
 
     /* Selectbox Styling */
     .stSelectbox label {
-        color: #00cec9 !important;
+        color: #00ffcc !important;
         font-weight: 700;
         font-size: 16px;
     }
 
-    /* Glowing Action Button */
+    /* Glowing Action Button - Emerald Neon Glow */
     .stButton>button {
-        background: linear-gradient(135deg, #6c5ce7 0%, #00cec9 100%);
-        color: white;
-        font-weight: 800;
+        background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        color: #061a14;
+        font-weight: 900;
         border: none;
         border-radius: 14px;
         padding: 15px 30px;
         font-size: 18px;
         width: 100%;
-        box-shadow: 0 0 25px rgba(0, 206, 201, 0.5);
+        box-shadow: 0 0 25px rgba(0, 184, 148, 0.6);
         transition: all 0.3s ease-in-out;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #00cec9 0%, #6c5ce7 100%);
-        box-shadow: 0 0 35px rgba(108, 92, 231, 0.8);
+        background: linear-gradient(135deg, #00cec9 0%, #00ffcc 100%);
+        box-shadow: 0 0 35px rgba(0, 255, 204, 0.9);
         transform: scale(1.02);
     }
     </style>
@@ -71,11 +71,11 @@ st.markdown(
 
 # App Title with ASZ Branding
 st.markdown(
-    '<p class="header-title">👑 ASZ Forex Terminal</p>',
+    '<p class="header-title">💹 ASZ Pro Forex Terminal</p>',
     unsafe_allow_html=True,
 )
 st.markdown(
-    '<p class="sub-header">High-Accuracy 95% Multi-Indicator Trend & ATR Risk Analytics</p>',
+    '<p class="sub-header">Institutional-Grade 95% Multi-Indicator Forex & Commodity Analytics</p>',
     unsafe_allow_html=True,
 )
 
@@ -83,7 +83,7 @@ st.markdown(
 col_1, col_2 = st.columns(2)
 
 with col_1:
-  # 20+ Popular Forex Pairs & Commodities Dictionary
+  # Pure Forex & Commodities Dictionary (No Crypto)
   pairs = {
       "EUR/USD": "EURUSD=X",
       "GBP/USD": "GBPUSD=X",
@@ -97,14 +97,14 @@ with col_1:
       "EUR/GBP": "EURGBP=X",
       "AUD/JPY": "AUDJPY=X",
       "CAD/JPY": "CADJPY=X",
+      "CHF/JPY": "CHFJPY=X",
+      "EUR/AUD": "EURAUD=X",
+      "GBP/AUD": "GBPAUD=X",
       "Gold (XAU/USD)": "GC=F",
       "Silver (XAG/USD)": "SI=F",
       "Crude Oil (WTI)": "CL=F",
       "Brent Oil": "BZ=F",
-      "Bitcoin (BTC/USD)": "BTC-USD",
-      "Ethereum (ETH/USD)": "ETH-USD",
-      "S&P 500": "^GSPC",
-      "Nasdaq 100": "^NDX",
+      "US Dollar Index (DXY)": "DX-Y.NYB",
   }
   selected_pair_name = st.selectbox(
       "🌐 Select Forex Asset / Pair:", list(pairs.keys())
@@ -165,7 +165,7 @@ def analyze_market_advanced(df):
   tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
   atr = tr.rolling(window=14).mean().iloc[-1]
   if pd.isna(atr):
-    atr = current_price * 0.002
+    atr = current_price * 0.0015
 
   # --- 1. Moving Averages (EMA 9, 21, 50) ---
   ema_9 = close.ewm(span=9, adjust=False).mean().iloc[-1]
@@ -284,8 +284,10 @@ def analyze_market_advanced(df):
 
 
 # Execution Button
-if st.button("🚀 Run ASZ High-Accuracy Signal Scanner", use_container_width=True):
-  with st.spinner("ASZ AI Engine is scanning multi-indicators & computing risk levels..."):
+if st.button("🚀 Run ASZ Forex AI Scan", use_container_width=True):
+  with st.spinner(
+      "ASZ Institutional AI is analyzing forex liquidity & ATR risk levels..."
+  ):
     df = fetch_market_data(ticker_symbol, period, interval)
     if not df.empty and "Close" in df.columns:
       (
@@ -302,9 +304,8 @@ if st.button("🚀 Run ASZ High-Accuracy Signal Scanner", use_container_width=Tr
       ) = analyze_market_advanced(df)
 
       st.markdown("---")
-      st.subheader(f"📊 Pro Analysis Report: {selected_pair_name}")
-      
-      # Formatting price digits based on asset type (Forex vs Gold/Indices)
+      st.subheader(f"📊 Institutional Report: {selected_pair_name}")
+
       price_fmt = f"{price:.5f}" if price < 20 else f"{price:,.2f}"
       st.metric(label="Current Market Price", value=price_fmt)
 
@@ -334,14 +335,18 @@ if st.button("🚀 Run ASZ High-Accuracy Signal Scanner", use_container_width=Tr
         st.metric(label="🔴 Bearish Probability", value=f"{sell_pct:.1f}%")
 
       st.progress(
-          int(buy_pct), text=f"ASZ AI Momentum -> Buy: {buy_pct:.1f}% | Sell: {sell_pct:.1f}%"
+          int(buy_pct),
+          text=(
+              f"ASZ AI Momentum Breakdown -> Buy: {buy_pct:.1f}% | Sell:"
+              f" {sell_pct:.1f}%"
+          ),
       )
 
       # Pro Risk Management Section
-      st.markdown("### 🛡️ Pro Risk Management (ATR Levels)")
+      st.markdown("### 🛡️ Institutional Risk Management (ATR Levels)")
       sl_fmt = f"{sl:.5f}" if sl < 20 else f"{sl:,.2f}"
       tp_fmt = f"{tp:.5f}" if tp < 20 else f"{tp:,.2f}"
-      
+
       col_sl, col_tp = st.columns(2)
       with col_sl:
         st.metric(label="🛑 Stop-Loss (Risk Limit)", value=sl_fmt)
@@ -356,10 +361,14 @@ if st.button("🚀 Run ASZ High-Accuracy Signal Scanner", use_container_width=Tr
       with col2:
         st.markdown("**Advanced Indicators (RSI/MACD/BB):**")
         st.text(f"Bullish: {b_ind} | Bearish: {s_ind}")
-      
+
       st.markdown("---")
-      st.caption("💡 **Powered by:** ASZ Forex Terminal | 95% High-Accuracy Algorithm.")
+      st.caption(
+          "💡 **Powered by:** ASZ Pro Forex Terminal | 95% High-Accuracy"
+          " Algorithm."
+      )
     else:
       st.error(
-          "⚠️ Could not load data for this asset. Markets might be closed or symbol is invalid."
+          "⚠️ Could not load data for this asset. Markets might be closed or"
+          " symbol is invalid."
       )
