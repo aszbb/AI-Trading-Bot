@@ -10,19 +10,19 @@ st.set_page_config(
     layout="centered",
 )
 
-# Advanced Cyberpunk / Deep Emerald Neon Styling (Different from Crypto Theme)
+# Advanced High-Contrast Neon Glassmorphism Styling
 st.markdown(
     """
     <style>
-    /* Background Deep Emerald Neon Gradient */
+    /* Background Deep Obsidian & Emerald Gradient */
     .stApp {
-        background: radial-gradient(circle at center, #061a14 0%, #020d09 100%);
+        background: radial-gradient(circle at center, #081c15 0%, #030806 100%);
         color: #ffffff;
     }
     
-    /* Custom Header Styling - Gold & Emerald Neon */
+    /* Custom Header Styling - Brilliant Neon Cyan & Gold */
     .header-title {
-        background: linear-gradient(90deg, #00ffcc 0%, #00b894 50%, #f1c40f 100%);
+        background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #f1c40f 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 38px;
@@ -32,11 +32,11 @@ st.markdown(
     }
     
     .sub-header {
-        color: #55efc4;
+        color: #00ffcc;
         text-align: center;
         font-size: 16px;
         margin-bottom: 25px;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     /* Selectbox Styling */
@@ -46,22 +46,35 @@ st.markdown(
         font-size: 16px;
     }
 
-    /* Glowing Action Button - Emerald Neon Glow */
+    /* FIX FOR DIM NUMBERS: Make all metric values stark white & bold */
+    [data-testid="stMetricValue"] {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        font-size: 28px !important;
+        text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #a3ffda !important;
+        font-weight: 600 !important;
+    }
+
+    /* Glowing Action Button - Vibrant Emerald Neon */
     .stButton>button {
-        background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-        color: #061a14;
+        background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+        color: #030806;
         font-weight: 900;
         border: none;
         border-radius: 14px;
         padding: 15px 30px;
         font-size: 18px;
         width: 100%;
-        box-shadow: 0 0 25px rgba(0, 184, 148, 0.6);
+        box-shadow: 0 0 25px rgba(0, 176, 155, 0.6);
         transition: all 0.3s ease-in-out;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #00cec9 0%, #00ffcc 100%);
-        box-shadow: 0 0 35px rgba(0, 255, 204, 0.9);
+        background: linear-gradient(135deg, #96c93d 0%, #00b09b 100%);
+        box-shadow: 0 0 35px rgba(150, 201, 61, 0.9);
         transform: scale(1.02);
     }
     </style>
